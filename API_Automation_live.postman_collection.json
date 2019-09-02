@@ -1,0 +1,707 @@
+{
+	"info": {
+		"_postman_id": "c8ab53fc-bf66-463d-8e20-2f44c4a01eff",
+		"name": "API_Automation_live",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "81e3c451-d156-4ecd-875b-6ce28534186d",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "7eeb90eb-56a2-4732-b0fc-5376fc9d062f",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"pm.globals.set(\"verification_code\", jsonData.data.verification_code);",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Zebpay-Subscription-Key",
+						"value": "{{SubscriptionKey}}",
+						"disabled": true
+					},
+					{
+						"key": "client_id",
+						"value": "{{client_id}}"
+					},
+					{
+						"key": "timestamp",
+						"value": "{{timestamp}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "ApiSignature",
+						"value": "{{ApiSignature}}"
+					},
+					{
+						"key": "RequestId",
+						"value": "{{$guid}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"country_code\":\"{{country_code}}\",\"mobile_number\":\"{{mobilenumber}}\",\"client_id\":\"{{client_id}}\",\"client_secret\":\"{{client_secret}}\"}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/user/login",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Verify OTP",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "81e3c451-d156-4ecd-875b-6ce28534186d",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "7eeb90eb-56a2-4732-b0fc-5376fc9d062f",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"pm.globals.set(\"verification_code\", jsonData.data.verification_code);",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Zebpay-Subscription-Key",
+						"value": "{{SubscriptionKey}}",
+						"disabled": true
+					},
+					{
+						"key": "client_id",
+						"value": "{{client_id}}"
+					},
+					{
+						"key": "timestamp",
+						"value": "{{timestamp}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "ApiSignature",
+						"value": "{{ApiSignature}}"
+					},
+					{
+						"key": "RequestId",
+						"value": "{{$guid}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"otp\": 840429,\"verification_code\": \"{{verification_code}}\",\"client_id\":\"{{client_id}}\",\"client_secret\":\"{{client_secret}}\"}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/user/verifyotp",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"user",
+						"verifyotp"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Verify PIN",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "81e3c451-d156-4ecd-875b-6ce28534186d",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "a98603c3-9af5-4645-b297-665f89cb6212",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"pm.globals.set(\"access_token\", jsonData.data.access_token);",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Zebpay-Subscription-Key",
+						"value": "{{SubscriptionKey}}",
+						"disabled": true
+					},
+					{
+						"key": "client_id",
+						"value": "{{client_id}}"
+					},
+					{
+						"key": "timestamp",
+						"value": "{{timestamp}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "ApiSignature",
+						"value": "{{ApiSignature}}"
+					},
+					{
+						"key": "RequestId",
+						"value": "{{$guid}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"grant_type\":\"user_credentials\",\"pin\":\"{{pin}}\",\"daily_trade_limit\":\"{{daily_trade_limit}}\",\"daily_withdraw_limit\":\"{{daily_withdraw_limit}}\",\"total_trade_limit\":\"{{total_trade_limit}}\",\"total_withdraw_limit\":\"{{total_withdraw_limit}}\",\"verification_code\":\"{{verification_code}}\",\"scope\":\"{{AllowedScopes}}\",\"client_id\":\"{{client_id}}\",\"client_secret\":\"{{client_secret}}\"}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/user/verifypin",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"user",
+						"verifypin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User: KYC_Status",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "e3fa6c18-6b14-42ee-bf41-3617ac65f9cc",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "75f4c580-10f3-4ddb-9c77-6f30295437a1",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"if (jsonData.data.verificationStatus == 1) {",
+							"    pm.test(\"User KYC Verification Status is: Verified \", function() {",
+							"        pm.expect(jsonData.data.verificationStatus).to.eql(1);",
+							"    });",
+							"}else if (jsonData.data.verificationStatus == 2) {",
+							"    pm.test(\"User KYC Verification Status is: InProcess \", function() {",
+							"        pm.expect(jsonData.data.verificationStatus).to.eql(1);",
+							"    });",
+							"}else if (jsonData.data.verificationStatus == 3) {",
+							"    pm.test(\"User KYC Verification Status is: Rejected \", function() {",
+							"        pm.expect(jsonData.data.verificationStatus).to.eql(1);",
+							"    });",
+							"}else",
+							"{",
+							"    pm.test(\"User KYC Verification Status is: UnVerified \", function() {",
+							"        pm.expect(jsonData.data.verificationStatus).to.eql(1);",
+							"    });",
+							"}",
+							"pm.test(\"Status code is 200\", function() {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"//var env = pm.environment.get(\"Dev_Env\");",
+							"//var env=pm.environment.name;",
+							"//console.log(env);",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Zebpay-Subscription-Key",
+						"value": "{{SubscriptionKey}}"
+					},
+					{
+						"key": "client_id",
+						"value": "{{client_id}}"
+					},
+					{
+						"key": "timestamp",
+						"value": "{{timestamp}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "ApiSignature",
+						"value": "{{ApiSignature}}"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}"
+					},
+					{
+						"key": "RequestId",
+						"value": "{{$guid}}"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/kyc/status?isOldUser=false",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"kyc",
+						"status"
+					],
+					"query": [
+						{
+							"key": "isOldUser",
+							"value": "false"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Trade: market Prices",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "56750d4a-aa4e-4492-b59b-eac5ff2c9943",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://www.zebpay.co/pro/v1/market",
+					"protocol": "https",
+					"host": [
+						"www",
+						"zebpay",
+						"co"
+					],
+					"path": [
+						"pro",
+						"v1",
+						"market"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Initial Wallet Balance",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "81e3c451-d156-4ecd-875b-6ce28534186d",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "d003a1e7-f894-46cd-a16e-c0bc9306b154",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"var i=jsonData.data[0].balance;",
+							"for (i=0; i<jsonData.data.length;i++){",
+							"pm.globals.set(\"Initial \" + jsonData.data[i].currency+\" balance\", jsonData.data[i].balance);",
+							"//console.log(\"Initial \" + jsonData.data[i].currency+\" balance\", jsonData.data[i].balance);",
+							"}",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Zebpay-Subscription-Key",
+						"value": "{{SubscriptionKey}}",
+						"disabled": true
+					},
+					{
+						"key": "client_id",
+						"value": "{{client_id}}"
+					},
+					{
+						"key": "timestamp",
+						"value": "{{timestamp}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "ApiSignature",
+						"value": "{{ApiSignature}}"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}"
+					},
+					{
+						"key": "RequestId",
+						"value": "{{$guid}}"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/wallet/balance",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"wallet",
+						"balance"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Logout",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "81e3c451-d156-4ecd-875b-6ce28534186d",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "7eeb90eb-56a2-4732-b0fc-5376fc9d062f",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"pm.globals.set(\"verification_code\", jsonData.data.verification_code);",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"if(jsonData.statusCode==200 && jsonData.statusDescription==\"OK\"){",
+							"    pm.test(\"Logout Successful\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Zebpay-Subscription-Key",
+						"value": "{{SubscriptionKey}}",
+						"disabled": true
+					},
+					{
+						"key": "client_id",
+						"value": "{{client_id}}"
+					},
+					{
+						"key": "timestamp",
+						"value": "{{timestamp}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "ApiSignature",
+						"value": "{{ApiSignature}}"
+					},
+					{
+						"key": "RequestId",
+						"value": "{{$guid}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"access_token\":\"{{access_token}}\",\"client_id\":\"{{client_id}}\",\"client_secret\":\"{{client_secret}}\"}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/user/logout",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"user",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "ff9d949b-c04e-44b7-8ff2-19d50d5a41b3",
+				"type": "text/javascript",
+				"exec": [
+					"function computeHttpSignature(request) {",
+					"    console.log(request);",
+					"  //timestamp = \"1533648066530\";//new Date().getTime();",
+					"  var separator = \"\\n\";",
+					"  var targetUrl = request.url.trim();",
+					"  targetUrl = targetUrl.replace(\"{{baseUrl}}\", pm.environment.get(\"baseUrl\"));",
+					"  console.log(pm.environment.get(\"address\"));",
+					"  pm.variables.set(\"address\", encodeURIComponent(pm.environment.get(\"address\")));",
+					"  console.log(\"After  \"+pm.environment.get(\"address\"));",
+					"  var bodyData = \"{}\";",
+					"  if(request.method == \"POST\")",
+					"  {",
+					"      bodyData = request.data;",
+					"      bodyData = bodyData.replace(\"{{country_code}}\", pm.environment.get(\"country_code\"));",
+					"      bodyData = bodyData.replace(\"{{client_id}}\", pm.environment.get(\"client_id\"));",
+					"      bodyData = bodyData.replace(\"{{client_secret}}\", pm.environment.get(\"client_secret\"));",
+					"      bodyData = bodyData.replace(\"{{verification_code}}\", pm.environment.get(\"verification_code\"));",
+					"      bodyData = bodyData.replace(\"{{access_token}}\", pm.environment.get(\"access_token\"));",
+					"      bodyData = bodyData.replace(\"{{AllowedScopes}}\", pm.environment.get(\"AllowedScopes\"));",
+					"      bodyData = bodyData.replace(\"{{mobilenumber}}\", pm.environment.get(\"mobilenumber\"));",
+					"      bodyData = bodyData.replace(\"{{pin}}\", pm.environment.get(\"pin\"));",
+					"      bodyData = bodyData.replace(\"{{order_id}}\", pm.environment.get(\"order_id\"));",
+					"      bodyData = bodyData.replace(\"{{daily_trade_limit}}\", pm.environment.get(\"daily_trade_limit\"));",
+					"      bodyData = bodyData.replace(\"{{daily_withdraw_limit}}\", pm.environment.get(\"daily_withdraw_limit\"));",
+					"      bodyData = bodyData.replace(\"{{total_trade_limit}}\", pm.environment.get(\"total_trade_limit\"));",
+					"      bodyData = bodyData.replace(\"{{total_withdraw_limit}}\", pm.environment.get(\"total_withdraw_limit\"));",
+					"  }",
+					"  var payLoadMessage = 'POST' + separator + pm.environment.get(\"timestamp\") + separator + targetUrl + separator + bodyData + separator + 'client_Id:' + pm.environment.get(\"client_id\");",
+					"  console.log(payLoadMessage);",
+					"  var hash = CryptoJS.HmacSHA256(CryptoJS.enc.Utf8.parse(payLoadMessage), CryptoJS.enc.Utf8.parse(pm.environment.get(\"APISecretKey\")));",
+					"  var actualHash = CryptoJS.enc.Base64.stringify(hash);",
+					"  console.log(actualHash);",
+					"  ",
+					"  ApiSignature = actualHash;",
+					"  ",
+					"  return actualHash;",
+					"}",
+					"pm.globals.set(\"timestamp\", new Date().getTime());",
+					"pm.globals.set(\"ApiSignature\", computeHttpSignature(request));"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "021c5b9c-24f9-4e30-82c5-49eeb3fcb470",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "c4f906ab-4407-4dd3-8154-1bfc3c417a5b",
+			"key": "country_code",
+			"value": "mt",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"id": "315cadfb-bfdc-4937-b0f1-6f869dc7bae2",
+			"key": "mobilenumber",
+			"value": "9765432",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"id": "a728b2c5-2bfa-4b0f-9980-0a482a753494",
+			"key": "pin",
+			"value": "1112",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"id": "b7eac3a4-beb2-4941-9073-ea22df03a5d9",
+			"key": "client_id",
+			"value": "878075ac-9daf-4da5-8af8-96c8153386d9",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"id": "a8b4b02c-99f1-48af-8b4e-884f6b4b28d7",
+			"key": "client_secret",
+			"value": "02533b05-fb24-4ef0-87b2-c6a4e6b64191",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"id": "e553d9d8-3ef6-455d-bb28-0dd118747dfe",
+			"key": "APISecretKey",
+			"value": "313f30af-d678-4281-9a88-d49a6d387ebc",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"id": "b13a9ff6-47f0-414f-8ac2-e5c8facc865a",
+			"key": "SubscriptionKey",
+			"value": "e6c8a7092f6b4a8e9dc3c7544827715f",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"id": "c11119cc-034e-4fea-948f-fa128307280d",
+			"key": "AllowedScopes",
+			"value": "openid profile wallet:transactions:read trade:read trade:create wallet:address:read wallet:transactions:send payment:get:data",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"id": "9c62d839-26b5-4139-8df8-8e7a11b5339c",
+			"key": "baseUrl",
+			"value": "https://www.zebpay.co/api/v1",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"id": "12ae2c60-f9de-46bb-8036-655a31a2623f",
+			"key": "daily_trade_limit",
+			"value": "500000",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"id": "cb6bfcaa-a3c8-47c9-8133-b0475e7e1f23",
+			"key": "daily_withdraw_limit",
+			"value": "500000",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"id": "df5e0afb-ee83-42da-b100-4a2385cec727",
+			"key": "total_trade_limit",
+			"value": "5000000",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"id": "489035ab-de78-4f0b-bce3-6de5049ac254",
+			"key": "total_withdraw_limit",
+			"value": "5000000",
+			"type": "string",
+			"disabled": true
+		}
+	]
+}
